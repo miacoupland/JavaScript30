@@ -18,29 +18,49 @@
     }
 
     // Regular
-
+    console.log('hello');
     // Interpolated
-
+    console.log('Hello I am a %s string!', 'short');
     // Styled
-
+    console.log('%cI am some great text', 'font-size: 50px; background-color: blue; text-shadow: 10px 10px 0 red');
     // warning!
-
+    console.warn('OH NO!');
     // Error :|
-
+    console.error('oh crap');
     // Info
-
+    console.info('Crocodiles eat 3-4 people per year');
     // Testing
-
+    console.assert(1 === 1, 'That is wrong!'); //this only fires if something is wrong
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('k'), 'That is wrong');
     // clearing
-
+    //console.clear();
     // Viewing DOM Elements
-
+    console.log(p);
+    console.dir(p);//gives a drop down to open up and see the classlist etc
     // Grouping together
-
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`);
+    })
+    
     // counting
-
+    console.count('dog');
+    console.count('dog');
     // timing
-
+    console.time('fetching data');
+        //do something that takes time
+    fetch('https://api.github.com/users/wesbos')
+    .then (data => data.json())
+    .then(data => {
+      console.timeEnd('fetching data');
+      console.log(data);
+    });
+    
+    console.table(dogs);
   </script>
 </body>
 </html>
