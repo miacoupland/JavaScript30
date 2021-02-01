@@ -42,7 +42,31 @@
 
 <button></button>
 <script>
+  //the browser figurs out what you click but it's also a click on everything
+  //that the element is inside of. if you're listening on all elements, it will trigger
+  //a click on all elements, not just the inside one
+  //it works from the top down, then starts at the bottom to bubble back
+  //for triggering the events
+  const divs = document.querySelectorAll('div');
+  const button = document.querySelector('button');
+  function logText(e) {
+    console.log(this.classList.value);
+    e.stopPropagation();//stop bubbling from this event up, and it will
+    //only work at the one you directly wanted to click. stop bubbling
+  }
 
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false, //will run on the way down not up if true
+    once: true //listens for a click then unbinds itself, same as a remove event listener
+    //unbinds for no future clicks
+  }));
+
+  button.addEventListener('click', () => {
+    console.log('Click!!!');
+  }, {
+    once: true //might be useful on store checkouts and the like where
+    //you can only click once
+  });
 </script>
 </body>
 </html>
